@@ -49,12 +49,48 @@ export default {
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
     '@nuxtjs/pwa',
+    '@nuxtjs/auth',
+    '@nuxtjs/toast',
+    'bootstrap-vue/nuxt'
   ],
+  toast: {
+    position: 'top-right',
+    duration: 2000
+  },
+  
+
+    loading: {
+      name: 'chasing-dots',
+      color: '#ff5638',
+      background: 'white',
+      height: '4px'
+   },
+
+   auth: {
+    strategies: {
+      local: {
+        endpoints: {
+          login: {url: 'http://store.softparse.com/api/auth/login', method: 'post', propertyName:    'token' },
+          logout: false,
+          user: {url: '/auth/user', method: 'get', propertyName: 'data'},
+        },
+        tokenRequired: true,
+        tokenType: 'Bearer'
+      },
+    },
+    redirect: {
+      login: '/login',
+      logout: '/',
+      user: '/blog',
+      callback:'/'
+    },
+  },
   /*
   ** Axios module configuration
   */
   axios: {
-    // See https://github.com/nuxt-community/axios-module#options
+    baseURL: 'http://store.softparse.com/api',
+    credential: false
   },
 
   /*

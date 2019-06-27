@@ -9,6 +9,7 @@
   import PostList from "../../components/Blog/PostList";
     export default {
         name: "index",
+        middleware: 'auth',
       components: {
         PostList,
         PostPreview
